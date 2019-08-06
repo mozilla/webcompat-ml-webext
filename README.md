@@ -8,7 +8,3 @@ regarding issues automatically classified by our ML automation.
 
 * Go to a WebCompat issue in GitHub
 * A popup shows up for issues with useful classifications
-
-## Credits
-
-* Machine Learning by Vectors Market from the Noun Project
