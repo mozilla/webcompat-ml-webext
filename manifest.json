@@ -2,5 +2,12 @@
     "manifest_version": 2,
     "name": "webcompat-ml-webext",
     "version": "0.1",
-    "description": "Assist webcompat triaging by showing the results of automatic issue classification"
+    "description": "Assist webcompat triaging by showing the results of automatic issue classification",
+    "icons": {
+        "48": "assets/icon.svg",
+        "96": "assets/icon.svg"
+    },
+    "permissions": [
+        "notifications", "webNavigation"
+    ]
 }
