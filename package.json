@@ -15,6 +15,7 @@
     "web-ext": "^3.1.1"
   },
   "scripts": {
-    "lint-js": "node_modules/eslint/bin/eslint.js src"
+    "lint-js": "node_modules/eslint/bin/eslint.js src",
+    "lint-webext": "node_modules/web-ext/bin/web-ext lint --source-dir src"
   }
 }
