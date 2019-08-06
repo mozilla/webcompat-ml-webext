@@ -3,6 +3,12 @@
     "name": "webcompat-ml-webext",
     "version": "0.1",
     "description": "Assist webcompat triaging by showing the results of automatic issue classification",
+    "background": {
+        "scripts": [
+            "background.js"
+        ],
+        "persistent": false
+    },
     "icons": {
         "48": "assets/icon.svg",
         "96": "assets/icon.svg"
