@@ -1,3 +1,8 @@
 module.exports = {
-    "extends": "standard"
+  "extends": "standard",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "webextensions": true
+  }
 };
