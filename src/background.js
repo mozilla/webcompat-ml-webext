@@ -21,7 +21,6 @@ function init(details) {
 
     browser.notifications.create(NOTIFICATION_ID, {
       type: "basic",
-      iconUrl: browser.runtime.getURL("assets/icon.svg"),
       title: notificationTitle,
       message: notificationMsg
     });
