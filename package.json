@@ -11,9 +11,10 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "web-ext": "^3.1.1"
   },
   "scripts": {
-    "lint": "node_modules/eslint/bin/eslint.js src"
+    "lint-js": "node_modules/eslint/bin/eslint.js src"
   }
 }
