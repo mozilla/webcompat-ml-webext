@@ -36,4 +36,4 @@ const isGithubFilter = {
   ]
 };
 
-browser.webNavigation.onCommitted.addListener(init, isGithubFilter);
+browser.webNavigation.onHistoryStateUpdated.addListener(init, isGithubFilter);
