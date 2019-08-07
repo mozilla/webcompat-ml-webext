@@ -1,3 +1,4 @@
+const GITHUB_ISSUE_REGEX = 'github.com/webcompat/web-bugs/issues/.+';
 const NOTIFICATION_ID = "ml-github-webcompat-notification";
 const CLASSIFICATION_PROBABILITY_THRESHOLD = 0.8;
 
@@ -30,7 +31,7 @@ function init(details) {
 const isGithubFilter = {
   url: [
     {
-      hostContains: ".github.com"
+      urlMatches: GITHUB_ISSUE_REGEX
     }
   ]
 };
