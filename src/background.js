@@ -20,7 +20,7 @@ function init(details) {
 
     if (data[0].probability >= CLASSIFICATION_PROBABILITY_THRESHOLD) {
       const notificationTitle = "WebCompat triaging automation";
-      const notificationMsg = `Possible ${classification.label} issue`;
+      const notificationMsg = "Possible invalid issue";
 
       browser.notifications.create(NOTIFICATION_ID, {
         type: "basic",
