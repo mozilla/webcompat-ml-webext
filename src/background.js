@@ -18,9 +18,10 @@ function init(details) {
   fetchClassificationDetails(details.url).then(function(data) {
     console.log(`Classification data: ${JSON.stringify(data)}`);
 
-    if (data[0].probability >= CLASSIFICATION_PROBABILITY_THRESHOLD) {
+    // Reverse logic workaround: notify if probability is less than 0.2 (complement)
+    if (data[0].probability <= 1 - CLASSIFICATION_PROBABILITY_THRESHOLD) {
       const notificationTitle = "WebCompat triaging automation";
-      const notificationMsg = `Possible ${classification.label} issue`;
+      const notificationMsg = "Possible valid issue";
 
       browser.notifications.create(NOTIFICATION_ID, {
         type: "basic",
