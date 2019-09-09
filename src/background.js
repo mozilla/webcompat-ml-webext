@@ -17,7 +17,7 @@ function init(details) {
   fetchClassificationDetails(details.url).then(function(data) {
     console.log(`Classification data: ${JSON.stringify(data)}`);
 
-    const classification = data.probability > 0.5 ? "valid" : "invalid";
+    const classification = data.probability < 0.5 ? "valid" : "invalid";
     const notificationTitle = "WebCompat triaging automation";
     const notificationMsg = `Possible ${classification} issue`;
 
