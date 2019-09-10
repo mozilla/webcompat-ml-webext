@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "webcompat-ml-webext",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Assist webcompat triaging by showing the results of automatic issue classification",
   "background": {
     "scripts": ["background.js"],
