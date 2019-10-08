@@ -3,13 +3,20 @@
   "name": "webcompat-ml-webext",
   "version": "0.0.3",
   "description": "Assist webcompat triaging by showing the results of automatic issue classification",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
   "icons": {
     "48": "assets/icon.svg",
     "96": "assets/icon.svg"
   },
-  "permissions": ["notifications", "webNavigation"]
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/webcompat/web-bugs/issues/*"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "permissions": [
+    "*://webcompat-ml-results.s3.eu-central-1.amazonaws.com/needsdiagnosis/*"
+  ]
 }
