@@ -20,11 +20,9 @@ function renderNotification(notificationTitle, notificationMsg) {
   elem.insertAdjacentElement("afterbegin", container);
 }
 
-function init() {
+function onPageLoad() {
   const details = {
     url: window.location.href
   };
   port.postMessage(details);
 }
-
-init();

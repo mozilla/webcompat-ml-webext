@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": ["https://github.com/webcompat/web-bugs/issues/*"],
-      "js": ["content-script.js"]
+      "js": ["content-script.js", "github-navigation.js"]
     }
   ],
   "permissions": [
