@@ -22,5 +22,8 @@
     "prettier-check": "node_modules/prettier/bin-prettier.js --check src/*.js src/*.json",
     "prettier-write": "node_modules/prettier/bin-prettier.js --write src/*.js src/*.json",
     "firefox": "node_modules/web-ext/bin/web-ext run --source-dir src"
+  },
+  "dependencies": {
+    "jshint": "^2.10.2"
   }
 }
