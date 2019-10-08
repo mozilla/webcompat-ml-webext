@@ -30,7 +30,7 @@ function handleMessage(msg) {
       const classification = getNeedsDiagnosisThreshold(data);
 
       if (classification === false) {
-        const notificationTitle = "WebCompat triaging automation";
+        const notificationTitle = "Triaging automation";
         const notificationMsg = "Issue doesn't need diagnosis";
         const response = { title: notificationTitle, msg: notificationMsg };
         messagePort.postMessage(response);

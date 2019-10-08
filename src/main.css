@@ -1,0 +1,32 @@
+:root {
+  --main-bg-color: #e4bc05;
+}
+
+
+div.webcompat-notifications {
+  position: fixed;
+  z-index: 100;
+  background: var(--main-bg-color);
+  border-radius: 5px;
+  padding: 7px;
+  margin: 5px;
+}
+
+div.webcompat-notifications>h1 {
+  font-size: small;
+}
+
+div.webcompat-notifications>p {
+  font-size: small;
+}
+
+div.webcompat-notifications>button {
+  float: right;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  font-size: medium;
+  border: 0px;
+  text-decoration: none;
+  background-color: var(--main-bg-color)
+}
