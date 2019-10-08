@@ -1,8 +1,8 @@
-const GITHUB_ISSUE_REGEX = "github.com/webcompat/web-bugs/issues/.+";
-const NOTIFICATION_ID = "ml-github-webcompat-notification";
-const VALID_PROBABILITY_THRESHOLD = 0.7;
+const PROBABILITY_THRESHOLD = 0.9;
 const S3_BUCKET_URL =
-  "https://webcompat-ml-results.s3.eu-central-1.amazonaws.com";
+  "https://webcompat-ml-results.s3.eu-central-1.amazonaws.com/needsdiagnosis";
+
+var messagePort;
 
 async function fetchClassificationDetails(url) {
   const issueId = new URL(url).pathname.split("/").pop();
@@ -14,30 +14,26 @@ async function fetchClassificationDetails(url) {
   return data;
 }
 
-function getClassThreshold(proba) {
-  const validProba = 1 - proba;
-  console.log(`Valid probability: ${validProba}`);
-  const classification =
-    validProba > VALID_PROBABILITY_THRESHOLD ? "valid" : "invalid";
-  return classification;
+function getNeedsDiagnosisThreshold(prediction) {
+  console.log("Get probability threshold");
+  if (prediction["needsdiagnosis"][0] === false) {
+    if (prediction["proba_False"][0] >= PROBABILITY_THRESHOLD) {
+      return false;
+    }
+  }
 }
 
-function init(details) {
-  fetchClassificationDetails(details.url)
+function handleMessage(msg) {
+  fetchClassificationDetails(msg.url)
     .then(function(data) {
-
       console.log(`Classification data: ${JSON.stringify(data)}`);
-      const classification = getClassThreshold(data[0].probability);
+      const classification = getNeedsDiagnosisThreshold(data);
 
-      if (classification === "valid") {
+      if (classification === false) {
         const notificationTitle = "WebCompat triaging automation";
-        const notificationMsg = `Possible ${classification} issue`;
-
-        browser.notifications.create(NOTIFICATION_ID, {
-          type: "basic",
-          title: notificationTitle,
-          message: notificationMsg
-        });
+        const notificationMsg = "Issue doesn't need diagnosis";
+        const response = { title: notificationTitle, msg: notificationMsg };
+        messagePort.postMessage(response);
       }
     })
     .catch(function(error) {
@@ -45,12 +41,13 @@ function init(details) {
     });
 }
 
-const isGithubFilter = {
-  url: [
-    {
-      urlMatches: GITHUB_ISSUE_REGEX
-    }
-  ]
-};
+function connected(port) {
+  messagePort = port;
+  messagePort.onMessage.addListener(function(msg) {
+    console.log("In background script, received message from content script");
+    console.log(`Message: ${JSON.stringify(msg)}`);
+    handleMessage(msg);
+  });
+}
 
-browser.webNavigation.onHistoryStateUpdated.addListener(init, isGithubFilter);
+browser.runtime.onConnect.addListener(connected);
