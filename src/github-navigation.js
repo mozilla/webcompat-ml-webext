@@ -28,20 +28,20 @@
  *   https://github.com/mcomella/github-content-script-navigation
  */
 (() => {
-    var currentLocation = window.location.href;
-    function dispatchIfLocationUpdate() {
-        // We don't want to dispatch for unrelated mutations
-        // (e.g. issues are added) so we check location.
-        let newLocation = window.location.href;
-        if (newLocation !== currentLocation) {
-            currentLocation = newLocation;
-            onPageLoad(); // defined by external content script.
-        }
+  var currentLocation = window.location.href;
+  function dispatchIfLocationUpdate() {
+    // We don't want to dispatch for unrelated mutations
+    // (e.g. issues are added) so we check location.
+    let newLocation = window.location.href;
+    if (newLocation !== currentLocation) {
+      currentLocation = newLocation;
+      onPageLoad(); // defined by external content script.
     }
+  }
 
-    let githubContainerObserver = new MutationObserver(dispatchIfLocationUpdate);
-    let githubContainer = document.getElementById('js-repo-pjax-container');
-    githubContainerObserver.observe(githubContainer, {childList: true});
+  let githubContainerObserver = new MutationObserver(dispatchIfLocationUpdate);
+  let githubContainer = document.getElementById("js-repo-pjax-container");
+  githubContainerObserver.observe(githubContainer, { childList: true });
 })();
 
 onPageLoad();
