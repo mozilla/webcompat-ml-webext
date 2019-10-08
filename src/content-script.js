@@ -15,14 +15,15 @@ function renderNotification(notificationTitle, notificationMsg) {
   msg.appendChild(msgText);
   container.appendChild(title);
   container.appendChild(msg);
+  container.setAttribute("class", "webcompat-notifications");
 
   const elem = document.querySelector("main");
   elem.insertAdjacentElement("afterbegin", container);
 }
 
 function onPageLoad() {
-  const details = {
-    url: window.location.href
-  };
-  port.postMessage(details);
+  const currentURL = new URL(window.location.href);
+  if (currentURL.pathname.startsWith("/webcompat/web-bugs/issues/")) {
+    port.postMessage({ url: currentURL.href });
+  }
 }
